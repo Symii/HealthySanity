@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menuHome"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
+
+    <item android:id="@+id/menuCalendar"
+        android:icon="@drawable/icon_calendar"
+        android:title="@string/kalendarz"/>
+
+    <item android:id="@+id/menuCategory"
+        android:icon="@drawable/ic_category"
+        android:title="@string/kategorie"/>
+
+    <item android:id="@+id/menuChallenges"
+        android:icon="@drawable/ic_challenge"
+        android:title="@string/wyzwania"/>
+
+    <item android:id="@+id/menuAuthors"
+        android:icon="@drawable/ic_info"
+        android:title="@string/autorzy"/>
+
+
+</menu>
