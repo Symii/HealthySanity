@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Healthy Sanity</string>
-    <string name="hello">Witaj</string>
-    <string name="trendingText">Jest to aplikacja, która pomoże ci wejść na zdrową drogę życia.</string>
+    <string name="hello">Cześć</string>
+    <string name="trendingText">Jest to aplikacja, która pomoże Ci wejść na zdrową drogę życia.</string>
     <string name="kategorie">Kategorie</string>
     <string name="kalendarz">Kalendarz</string>
     <string name="home">Strona główna</string>
