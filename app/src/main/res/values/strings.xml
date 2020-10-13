@@ -7,4 +7,22 @@
     <string name="home">Strona główna</string>
     <string name="wyzwania">Wyzwania</string>
     <string name="autorzy">Autorzy</string>
+    <string name="username">Użytkownik</string>
+    <string name="quest_search_hint">Szukaj zadania</string>
+    <string name="trending">TRENDING</string>
+    <string name="choose_category">Wybierz kategorie</string>
+    <string name="physic_health">Zdrowie fizyczne</string>
+    <string name="check_objectives_physic">Przeglądaj zadania związane ze zdrowiem fizycznym!</string>
+    <string name="custom_category">Własna kategoria</string>
+    <string name="custom_category_explanation">Brakuje zadań? Stwórz swoje własne!</string>
+    <string name="mental_category_hint">Przeglądaj zadania związane ze zdrowiem psychicznym!</string>
+    <string name="mental_health">Zdrowie psychiczne</string>
+    <string name="stats">Statystyki</string>
+    <string name="badges">Odznaki</string>
+    <string name="challenges">Wyzwania</string>
+    <string name="category">Kategorie</string>
+    <string name="calendar">Kalendarz</string>
+    <string name="main_page">Strona główna</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
 </resources>

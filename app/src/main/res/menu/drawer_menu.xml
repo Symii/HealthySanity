@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/main_page" />
+
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/icon_calendar"
+            android:title="@string/calendar" />
+
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_category"
+            android:title="@string/category" />
+
+        <item
+            android:id="@+id/nav_challenge"
+            android:icon="@drawable/ic_challenge"
+            android:title="@string/challenges" />
+
+        <item
+            android:id="@+id/nav_reward_badges"
+            android:icon="@drawable/ic_reward_badges"
+            android:title="@string/badges" />
+
+    </group>
+
+    <item android:title="@string/communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_24"
+                android:title="@string/share" />
+
+            <item
+                android:id="@+id/nav_stats"
+                android:icon="@drawable/ic_assignment_turned_in_24"
+                android:title="@string/stats" />
+        </menu>
+    </item>
+
+</menu>
