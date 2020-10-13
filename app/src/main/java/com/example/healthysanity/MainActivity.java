@@ -1,13 +1,11 @@
 package com.example.healthysanity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.healthysanity.listeners.OpenCategoryActivityOnClickListener;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -19,28 +17,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView usernameTextView = (TextView) findViewById(R.id.textUsername);
+        TextView usernameTextView = findViewById(R.id.textUsername);
         usernameTextView.setText(USERNAME);
 
         LinearLayout categoryLayout = findViewById(R.id.layoutCategory);
-        categoryLayout.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                openCategoryActivity();
-            }
-        });
+        categoryLayout.setOnClickListener(new OpenCategoryActivityOnClickListener(this));
 
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-    }
-
-    private void openCategoryActivity()
-    {
-        Intent intent = new Intent(this, CategoryList.class);
-        startActivity(intent);
     }
 
 }
