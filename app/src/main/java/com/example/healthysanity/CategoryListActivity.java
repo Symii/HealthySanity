@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-public class CategoryList extends AppCompatActivity
+public class CategoryListActivity extends AppCompatActivity
 {
 
     @Override

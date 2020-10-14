@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                changeActivity(Calendar.class);
+                changeActivity(CalendarActivity.class);
             }
         });
 

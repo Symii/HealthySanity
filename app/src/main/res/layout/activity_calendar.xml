@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Calendar"
+    tools:context=".CalendarActivity"
     android:orientation="vertical"
     >
 
@@ -126,6 +126,32 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/no_objectives_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_red"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            android:layout_marginTop="30dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Brak zadań w tym dniu"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/task_container"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
@@ -134,29 +160,7 @@
             >
 
             <LinearLayout
-                android:id="@+id/no_objectives_layout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/bg_red"
-                android:layout_marginBottom="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:visibility="gone"
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Brak zadań w tym dniu"
-                    android:textColor="@color/colorWhite"
-                    android:gravity="center"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/objective1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_button"
@@ -194,6 +198,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/objective2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_button"
