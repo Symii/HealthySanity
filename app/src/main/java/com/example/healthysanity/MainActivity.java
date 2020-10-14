@@ -1,7 +1,10 @@
 package com.example.healthysanity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,9 +26,24 @@ public class MainActivity extends AppCompatActivity
         LinearLayout categoryLayout = findViewById(R.id.layoutCategory);
         categoryLayout.setOnClickListener(new OpenCategoryActivityOnClickListener(this));
 
+        LinearLayout calendarLayout = findViewById(R.id.layoutCalendar);
+        calendarLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                changeActivity(Calendar.class);
+            }
+        });
+
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
+    }
+
+    private void changeActivity(Class destination)
+    {
+        Intent intent = new Intent(this, destination);
+        startActivity(intent);
     }
 
 }

@@ -16,32 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+            <include
+                android:id="@+id/topbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#EDEDED"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/backImage"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="2dp"
-                    app:srcCompat="@drawable/ic_back_arrow"
-                    android:layout_marginStart="2dp"
-                    android:contentDescription="@string/app_name" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/app_name"
-                    android:textColor="#2181ad"
-                    android:textStyle="bold"
-                    android:layout_marginStart="10dp" />
-            </LinearLayout>
+                layout="@layout/topbar"
+                />
 
             <TextView
                 android:id="@+id/textView"

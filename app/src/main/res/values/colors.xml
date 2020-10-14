@@ -9,4 +9,7 @@
     <color name="colorTrendingStart">#29bbff</color>
     <color name="colorTrendingEnd">#002b8f</color>
     <color name="colorDivider">#D6D6D6</color>
+    <color name="colorText">#2181ad</color>
+    <color name="green">#46eb34</color>
+    <color name="red">#e00724</color>
 </resources>

@@ -25,4 +25,5 @@
     <string name="main_page">Strona główna</string>
     <string name="communicate">Communicate</string>
     <string name="share">Share</string>
+    <string name="choose_date">Wybierz date</string>
 </resources>
