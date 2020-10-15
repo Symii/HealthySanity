@@ -39,16 +39,37 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/selectedDateTextView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_marginTop="30dp"
                 android:gravity="center"
-                android:paddingBottom="30dp"
-                android:text="Wybrana data:"
-                android:textColor="#676767"
-                android:textSize="19sp" />
+                android:layout_marginBottom="20dp"
+                >
+
+                <TextView
+                    android:id="@+id/selectedDateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="40dp"
+                    android:text=""
+                    android:textColor="#676767"
+                    android:textSize="19sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/today"
+                    android:background="@drawable/bg_button"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/today_button"
+                    />
+
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +82,9 @@
                 <CalendarView
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:firstDayOfWeek="@android:integer/config_longAnimTime"
+                    >
 
                 </CalendarView>
 
@@ -177,15 +200,6 @@
                     app:tint="@color/colorWhite"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Przebiegnij dystans 2 kilometrów"
-                    android:gravity="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
-                    android:layout_marginStart="5dp"/>
-
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -193,6 +207,18 @@
                     app:tint="@color/green"
                     android:layout_marginLeft="4dp"
                     />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Przebiegnij dystans 2 kilometrów"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:layout_marginStart="5dp"
+                    />
+
+
 
 
             </LinearLayout>
@@ -215,21 +241,23 @@
                     app:tint="@color/colorWhite"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Medytacja 15 minut"
-                    android:gravity="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
-                    android:layout_marginStart="5dp"/>
-
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     app:srcCompat="@drawable/ic_close_24"
                     app:tint="@color/red"
                     android:layout_marginStart="4dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medytacja 15 minut"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:layout_marginStart="5dp"/>
+
+
 
 
 

@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +20,11 @@ import com.example.healthysanity.utils.DPUtils;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class CalendarActivity extends AppCompatActivity
@@ -45,6 +52,8 @@ public class CalendarActivity extends AppCompatActivity
         calendarView = findViewById(R.id.calendarView);
         selectedDate = findViewById(R.id.selectedDateTextView);
 
+        setCurrentDate();
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
         {
             @Override
@@ -57,12 +66,32 @@ public class CalendarActivity extends AppCompatActivity
                 buildDynamicObjectives();
             }
         });
+
+        Button todayButton = findViewById(R.id.today_button);
+        todayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCurrentDate();
+            }
+        });
     }
 
     private void changeActivity(Class destination)
     {
         Intent intent = new Intent(this, destination);
         startActivity(intent);
+    }
+
+    private void setCurrentDate()
+    {
+        Date date = new Date(System.currentTimeMillis());
+        DateFormat formater = DateFormat.getDateInstance();
+        String formatedDate = formater.format(date);
+
+        String today = "Wybrana data: " + formatedDate;
+        selectedDate.setText(today);
+
+        calendarView.setDate(System.currentTimeMillis());
     }
 
     private void buildDynamicObjectives()
@@ -105,7 +134,7 @@ public class CalendarActivity extends AppCompatActivity
 
         objectiveLayout.setBackgroundResource(R.drawable.bg_button);
         int padding = DPUtils.getPixelsFromDP(this, 10);
-        objectiveLayout.setPadding(padding, padding, padding, padding);
+        objectiveLayout.setPadding(padding, padding + 20, padding, padding + 20);
         objectiveLayout.setId(R.id.objective1);
 
         ImageView icon = new ImageView(this);
@@ -114,7 +143,7 @@ public class CalendarActivity extends AppCompatActivity
         icon.setColorFilter(Color.rgb(255, 255, 255));
 
         LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         textViewParams.setMargins(5, 0, 0, 0);
 
         TextView textView = new TextView(this);
@@ -131,8 +160,8 @@ public class CalendarActivity extends AppCompatActivity
 
         // Adding content items to objective layout
         objectiveLayout.addView(icon);
-        objectiveLayout.addView(textView);
         objectiveLayout.addView(completeIcon);
+        objectiveLayout.addView(textView);
         // Finally add our objective to container layout
         container.addView(objectiveLayout);
     }
