@@ -23,16 +23,16 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="@string/choose_category"
                 android:textColor="#3791EF"
                 android:textSize="30sp"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp" />
+                tools:layout_editor_absoluteX="10dp" />
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
+                android:id="@+id/physical_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -76,14 +76,14 @@
 
 
             <LinearLayout
-                android:id="@+id/linearLayout3"
+                android:id="@+id/mental_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/bg_item"
                 android:orientation="horizontal"
                 android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/physical_layout"
                 tools:layout_editor_absoluteX="0dp">
 
                 <ImageView
@@ -127,7 +127,7 @@
                 android:background="@drawable/bg_item"
                 android:orientation="horizontal"
                 android:padding="12dp"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/mental_layout"
                 tools:layout_editor_absoluteX="0dp">
 
                 <ImageView

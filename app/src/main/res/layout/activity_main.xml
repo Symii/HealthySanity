@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
@@ -39,6 +39,7 @@
         android:layout_gravity="end"
         app:menu="@menu/drawer_menu"
         android:id="@+id/nav_view"
+
         >
 
     </com.google.android.material.navigation.NavigationView>
@@ -54,6 +55,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:id="@+id/layoutHeader"
             android:background="@drawable/header_background"
             android:padding="10dp"
@@ -188,7 +190,7 @@
                         android:gravity="center"
                         android:text="@string/calendar"
                         android:textColor="@color/colorAccent"
-                        android:textSize="20sp"
+                        android:textSize="19sp"
                         android:textStyle="bold"/>
 
 
@@ -215,15 +217,16 @@
                         android:layout_margin="8dp"
                         android:contentDescription="@string/app_name"
                         android:padding="8dp"
+                        app:tint="@color/colorText"
                         app:srcCompat="@drawable/ic_category"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@string/category"
+                        android:text="@string/overview"
                         android:textColor="@color/colorAccent"
-                        android:textSize="20sp"
+                        android:textSize="19sp"
                         android:textStyle="bold"/>
 
 
@@ -258,11 +261,13 @@
                         android:gravity="center"
                         android:text="@string/challenges"
                         android:textColor="@color/colorAccent"
-                        android:textSize="20sp"
+                        android:textSize="19sp"
                         android:textStyle="bold"/>
 
 
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:id="@+id/layoutRewardBadges"
@@ -293,7 +298,78 @@
                         android:gravity="center"
                         android:text="@string/badges"
                         android:textColor="@color/colorAccent"
-                        android:textSize="20sp"
+                        android:textSize="19sp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/white_rectangle_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    app:layout_constraintEnd_toStartOf="@id/layoutCategory"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layoutChallenge">
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/app_name"
+                        android:padding="8dp"
+                        app:tint="@color/colorText"
+                        app:srcCompat="@drawable/ic_person_24"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="19sp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/white_rectangle_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    app:layout_constraintStart_toEndOf="@id/layoutCalendar"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layoutRewardBadges">
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="8dp"
+                        android:contentDescription="@string/app_name"
+                        android:padding="8dp"
+                        app:srcCompat="@drawable/ic_info"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/info"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="19sp"
                         android:textStyle="bold"/>
 
 
@@ -309,7 +385,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/layoutRewardBadges"
                     app:layout_constraintStart_toStartOf="@id/layoutCalendar"
-                    app:layout_constraintTop_toBottomOf="@id/layoutChallenge">
+                    app:layout_constraintTop_toBottomOf="@id/layoutProfile">
 
                     <TextView
                         android:id="@+id/textTrending"
@@ -337,17 +413,42 @@
                         app:tint="@color/colorWhite" />
 
                     <TextView
+                        android:id="@+id/textTrending1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:ellipsize="end"
                         android:maxLines="3"
-                        android:text="@string/trendingText"
+                        android:text="@string/trendingText1"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp"
                         app:layout_constraintTop_toBottomOf="@id/textTrending"
 
-                        />
+                        tools:layout_editor_absoluteX="20dp" />
+
+                    <TextView
+                        android:id="@+id/textTrending2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="@string/trendingText2"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/textTrending1"
+                        tools:layout_editor_absoluteX="20dp" />
+
+                    <TextView
+                        android:id="@+id/textTrending3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="@string/trendingText3"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="20sp"
+                        app:layout_constraintTop_toBottomOf="@+id/textTrending2"
+                        tools:layout_editor_absoluteX="20dp" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -363,11 +464,12 @@
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
             app:itemIconSize="30dp"
-            app:labelVisibilityMode="unlabeled"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/navigation_menu"/>
 
         <View
+
             android:id="@+id/viewDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"

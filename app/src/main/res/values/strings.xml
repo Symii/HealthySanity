@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Healthy Sanity</string>
     <string name="hello">Cześć</string>
-    <string name="trendingText">Jest to aplikacja, która pomoże Ci wejść na zdrową drogę życia.</string>
+    <string name="trendingText1">Jest to aplikacja, która pomoże Ci wejść na zdrową drogę życia.</string>
+    <string name="trendingText2">Rozplanuj sobie dzień, przypisując do dni tygodnia wybrane przez Ciebie zadania</string>
+    <string name="trendingText3">fizyczne lub psychiczne oraz możesz stworzyć swoje własne!</string>
     <string name="kategorie">Kategorie</string>
     <string name="kalendarz">Kalendarz</string>
     <string name="home">Strona główna</string>
@@ -27,4 +29,12 @@
     <string name="share">Share</string>
     <string name="choose_date">Wybierz date</string>
     <string name="today">Dzisiaj</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="statistics">Statystyki</string>
+    <string name="overview">Przegląd</string>
+    <string name="info">Informacje</string>
+    <string name="profile">Profil</string>
+    <string name="navigation_drawer_open">Otwórz menu</string>
+    <string name="navigation_drawer_close">Zamknij menu</string>
 </resources>

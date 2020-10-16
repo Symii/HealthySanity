@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/physical_category"
+        android:icon="@drawable/ic_person_running_on_a_treadmill_silhouette_from_side_view"
+        android:title="Kategoria fizyczna"/>
+
+    <item android:id="@+id/mental_category"
+        android:icon="@drawable/ic_meditate_24"
+        android:title="Kategoria psychiczna"/>
+
+    <item android:id="@+id/custom_category"
+        android:icon="@drawable/ic_account_circle_24"
+        android:title="Własne zadania"/>
+
+
+
+
+</menu>

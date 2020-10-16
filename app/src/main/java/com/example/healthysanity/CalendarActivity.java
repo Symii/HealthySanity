@@ -32,6 +32,7 @@ public class CalendarActivity extends AppCompatActivity
 
     private CalendarView calendarView;
     private TextView selectedDate;
+    private LinearLayout addNewObjectiveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,8 +52,16 @@ public class CalendarActivity extends AppCompatActivity
 
         calendarView = findViewById(R.id.calendarView);
         selectedDate = findViewById(R.id.selectedDateTextView);
+        addNewObjectiveButton = findViewById(R.id.addNewObjectiveButton);
 
         setCurrentDate();
+
+        addNewObjectiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeActivity(MasterActivity.class);
+            }
+        });
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
         {
@@ -135,7 +144,7 @@ public class CalendarActivity extends AppCompatActivity
         objectiveLayout.setBackgroundResource(R.drawable.bg_button);
         int padding = DPUtils.getPixelsFromDP(this, 10);
         objectiveLayout.setPadding(padding, padding + 20, padding, padding + 20);
-        objectiveLayout.setId(R.id.objective1);
+        objectiveLayout.setId(View.generateViewId());
 
         ImageView icon = new ImageView(this);
         icon.setLayoutParams(iconParams);
