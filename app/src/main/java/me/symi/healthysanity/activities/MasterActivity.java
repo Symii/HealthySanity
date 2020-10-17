@@ -1,4 +1,4 @@
-package com.example.healthysanity.activities;
+package me.symi.healthysanity.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.healthysanity.R;
-import com.example.healthysanity.enums.CategoryType;
-import com.example.healthysanity.fragments.CategoryChooseFragment;
-import com.example.healthysanity.fragments.MentalObjectivesFragment;
-import com.example.healthysanity.fragments.NewObjectiveFragment;
-import com.example.healthysanity.fragments.PhysicalObjectivesFragment;
+import com.symi.healthysanity.R;
+import me.symi.healthysanity.enums.CategoryType;
+import me.symi.healthysanity.fragments.CategoryChooseFragment;
+import me.symi.healthysanity.fragments.MentalObjectivesFragment;
+import me.symi.healthysanity.fragments.NewObjectiveFragment;
+import me.symi.healthysanity.fragments.PhysicalObjectivesFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MasterActivity extends AppCompatActivity {

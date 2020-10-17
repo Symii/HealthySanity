@@ -1,4 +1,4 @@
-package com.example.healthysanity;
+package me.symi.healthysanity;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.healthysanity.activities.CalendarActivity;
-import com.example.healthysanity.listeners.OpenStatisticsActivityOnClickListener;
+import com.symi.healthysanity.R;
+
+import me.symi.healthysanity.activities.CalendarActivity;
+import me.symi.healthysanity.listeners.OpenStatisticsActivityOnClickListener;
 
 public class MainActivity extends AppCompatActivity
 {

@@ -1,4 +1,4 @@
-package com.example.healthysanity.activities;
+package me.symi.healthysanity.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.healthysanity.MainActivity;
-import com.example.healthysanity.R;
-import com.example.healthysanity.utils.DPUtils;
+import me.symi.healthysanity.MainActivity;
+import com.symi.healthysanity.R;
+import me.symi.healthysanity.utils.DPUtils;
 
 import java.text.DateFormat;
 import java.util.Date;

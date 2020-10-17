@@ -1,4 +1,4 @@
-package com.example.healthysanity.enums;
+package me.symi.healthysanity.enums;
 
 public enum CategoryType
 {

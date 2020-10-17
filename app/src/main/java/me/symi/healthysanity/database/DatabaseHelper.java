@@ -1,4 +1,4 @@
-package com.example.healthysanity.database;
+package me.symi.healthysanity.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import com.example.healthysanity.enums.ObjectiveType;
+import me.symi.healthysanity.enums.ObjectiveType;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -61,11 +61,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
         if(result == -1)
         {
-            Toast.makeText(context, "Błąd...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Błąd...", Toast.LENGTH_LONG).show();
         }
         else
         {
-            Toast.makeText(context, "Pomyślnie stworzyłeś nowe zadanie!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Pomyślnie stworzyłeś nowe zadanie!", Toast.LENGTH_LONG).show();
         }
 
     }

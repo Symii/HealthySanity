@@ -1,7 +1,6 @@
-package com.example.healthysanity.utils;
+package me.symi.healthysanity.utils;
 
 import android.util.TypedValue;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 

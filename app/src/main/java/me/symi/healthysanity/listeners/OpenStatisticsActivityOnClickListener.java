@@ -1,8 +1,8 @@
-package com.example.healthysanity.listeners;
+package me.symi.healthysanity.listeners;
 
 import android.view.View;
 
-import com.example.healthysanity.MainActivity;
+import me.symi.healthysanity.MainActivity;
 
 public class OpenStatisticsActivityOnClickListener implements View.OnClickListener
 {

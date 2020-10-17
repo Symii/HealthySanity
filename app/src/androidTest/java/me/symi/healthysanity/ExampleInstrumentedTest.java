@@ -1,4 +1,4 @@
-package com.example.healthysanity;
+package me.symi.healthysanity;
 
 import android.content.Context;
 

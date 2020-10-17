@@ -1,4 +1,4 @@
-package com.example.healthysanity.fragments;
+package me.symi.healthysanity.fragments;
 
 import android.os.Bundle;
 
@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.healthysanity.activities.MasterActivity;
-import com.example.healthysanity.R;
+import me.symi.healthysanity.activities.MasterActivity;
+import com.symi.healthysanity.R;
 
 public class CategoryChooseFragment extends Fragment {
 
