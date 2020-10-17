@@ -1,4 +1,4 @@
-package com.example.healthysanity;
+package com.example.healthysanity.fragments;
 
 import android.os.Bundle;
 
@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class MentalObjectivesFragment extends Fragment {
+import com.example.healthysanity.R;
+
+public class PhysicalObjectivesFragment extends Fragment {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mental_objectives, container, false);
+        return inflater.inflate(R.layout.fragment_physical_objectives, container, false);
     }
 }

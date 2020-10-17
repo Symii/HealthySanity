@@ -1,4 +1,4 @@
-package com.example.healthysanity;
+package com.example.healthysanity.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.example.healthysanity.MainActivity;
+import com.example.healthysanity.R;
 
 public class CategoryListActivity extends AppCompatActivity
 {

@@ -1,9 +1,7 @@
 package com.example.healthysanity.listeners;
 
-import android.content.Intent;
 import android.view.View;
 
-import com.example.healthysanity.CategoryListActivity;
 import com.example.healthysanity.MainActivity;
 
 public class OpenStatisticsActivityOnClickListener implements View.OnClickListener

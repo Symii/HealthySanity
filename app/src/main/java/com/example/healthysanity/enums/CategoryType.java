@@ -1,6 +1,7 @@
 package com.example.healthysanity.enums;
 
-public enum CategoryType {
+public enum CategoryType
+{
     CHOOSE_CATEGORY,
     PHYSICAL,
     MENTAL,

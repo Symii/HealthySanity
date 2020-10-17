@@ -1,8 +1,10 @@
-package com.example.healthysanity;
+package com.example.healthysanity.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.healthysanity.R;
 
 public class DashboardActivity extends AppCompatActivity
 {

@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.healthysanity.activities.CalendarActivity;
 import com.example.healthysanity.listeners.OpenStatisticsActivityOnClickListener;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity
 {
