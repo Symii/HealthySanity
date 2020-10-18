@@ -50,6 +50,7 @@ public class MentalObjectivesFragment extends Fragment
             while (cursor.moveToNext())
             {
                 final LinearLayout objectiveLayout = addObjectiveLayout(view, cursor.getString(1));
+                final int ID = cursor.getInt(0);
                 final String objectiveName = cursor.getString(1);
                 final String objectiveDescription = cursor.getString(2);
                 final String objectiveType = cursor.getString(3);
@@ -58,7 +59,7 @@ public class MentalObjectivesFragment extends Fragment
                 objectiveLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        openAssignObjectiveActivity(objectiveName, objectiveDescription, objectiveType, objectiveTime);
+                        openAssignObjectiveActivity(objectiveName, objectiveDescription, objectiveType, objectiveTime, ID);
                     }
                 });
             }
@@ -68,7 +69,7 @@ public class MentalObjectivesFragment extends Fragment
         return  view;
     }
 
-    private void openAssignObjectiveActivity(String name, String description, String type, int time)
+    private void openAssignObjectiveActivity(String name, String description, String type, int time, int ID)
     {
         Intent intent = new Intent(getActivity(), AssignObjectiveActivity.class);
         intent.putExtra("date", date);
@@ -76,6 +77,7 @@ public class MentalObjectivesFragment extends Fragment
         intent.putExtra("description", description);
         intent.putExtra("type", type);
         intent.putExtra("time", time);
+        intent.putExtra("id", ID);
 
         startActivity(intent);
     }

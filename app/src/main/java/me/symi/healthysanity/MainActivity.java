@@ -21,7 +21,6 @@ import com.symi.healthysanity.R;
 
 import me.symi.healthysanity.activities.CalendarActivity;
 import me.symi.healthysanity.activities.CategoryListActivity;
-import me.symi.healthysanity.listeners.OpenStatisticsActivityOnClickListener;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -39,7 +38,12 @@ public class MainActivity extends AppCompatActivity
         usernameTextView.setText(USERNAME);
 
         LinearLayout categoryLayout = findViewById(R.id.layoutCategory);
-        categoryLayout.setOnClickListener(new OpenStatisticsActivityOnClickListener(this));
+        categoryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeActivity(CategoryListActivity.class);
+            }
+        });
 
         LinearLayout calendarLayout = findViewById(R.id.layoutCalendar);
         calendarLayout.setOnClickListener(new View.OnClickListener() {

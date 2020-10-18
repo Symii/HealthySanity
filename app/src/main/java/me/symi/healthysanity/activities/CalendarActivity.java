@@ -22,27 +22,32 @@ import me.symi.healthysanity.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.symi.healthysanity.R;
 
+import me.symi.healthysanity.database.DatabaseHelper;
 import me.symi.healthysanity.enums.CategoryType;
 import me.symi.healthysanity.fragments.CategoryChooseFragment;
 import me.symi.healthysanity.fragments.MentalObjectivesFragment;
 import me.symi.healthysanity.fragments.NewObjectiveFragment;
 import me.symi.healthysanity.fragments.PhysicalObjectivesFragment;
+import me.symi.healthysanity.objective.Objective;
 import me.symi.healthysanity.utils.DPUtil;
 import me.symi.healthysanity.utils.FileUtil;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 public class CalendarActivity extends AppCompatActivity
 {
-
     private CalendarView calendarView;
     private TextView selectedDate;
     private LinearLayout addNewObjectiveButton;
     private String date;
     private BottomNavigationView bottomNavigationView;
+    private LinearLayout container;
+    private LinearLayout noObjectivesLayout;
+    private DPUtil dpUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,6 +65,9 @@ public class CalendarActivity extends AppCompatActivity
             }
         });
 
+        dpUtils = new DPUtil(getResources());
+        noObjectivesLayout = findViewById(R.id.no_objectives_layout);
+        container = findViewById(R.id.task_container);
         calendarView = findViewById(R.id.calendarView);
         selectedDate = findViewById(R.id.selectedDateTextView);
         addNewObjectiveButton = findViewById(R.id.addNewObjectiveButton);
@@ -111,7 +119,7 @@ public class CalendarActivity extends AppCompatActivity
                 String formatedDate = "Wybrana data: " + date;
                 selectedDate.setText(formatedDate);
 
-                buildObjectiveLayout();
+                checkForObjectives();
             }
         });
 
@@ -122,6 +130,30 @@ public class CalendarActivity extends AppCompatActivity
                 setCurrentDate();
             }
         });
+    }
+
+    private void checkForObjectives()
+    {
+        if(container.getChildCount() >= 1)
+        {
+            container.removeAllViews();
+        }
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(CalendarActivity.this);
+        ArrayList<Objective> objectives = databaseHelper.getObjectivesByDate(date);
+        if(objectives.size() <= 0)
+        {
+            noObjectivesLayout.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            noObjectivesLayout.setVisibility(View.GONE);
+        }
+
+        for(Objective objective : objectives)
+        {
+            buildObjectiveLayout(objective);
+        }
     }
 
 
@@ -142,28 +174,11 @@ public class CalendarActivity extends AppCompatActivity
         String today = "Wybrana data: " + strDate;
         selectedDate.setText(today);
         calendarView.setDate(System.currentTimeMillis());
+        checkForObjectives();
     }
 
-    private LinearLayout buildObjectiveLayout()
+    private LinearLayout buildObjectiveLayout(Objective objective)
     {
-        LinearLayout container = findViewById(R.id.task_container);
-        LinearLayout noObjectivesLayout = findViewById(R.id.no_objectives_layout);
-        DPUtil dpUtils = new DPUtil(getResources());
-
-        if(container.getChildCount() >= 1)
-        {
-            container.removeAllViews();
-        }
-
-        Random random = new Random();
-        if(random.nextInt(2) == 0)
-        {
-            noObjectivesLayout.setVisibility(View.VISIBLE);
-            return null;
-        }
-
-        noObjectivesLayout.setVisibility(View.GONE);
-
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -200,7 +215,7 @@ public class CalendarActivity extends AppCompatActivity
 
         TextView textView = new TextView(this);
         textView.setLayoutParams(textViewParams);
-        textView.setText("Przebiegnij dystans 2 kilometrów");
+        textView.setText(objective.getDescription());
         textView.setGravity(Gravity.CENTER);
         textView.setTextColor(Color.rgb(255, 255, 255));
         textView.setTextSize(18);

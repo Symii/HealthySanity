@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.symi.healthysanity.R;
 import me.symi.healthysanity.database.DatabaseHelper;
 import me.symi.healthysanity.enums.ObjectiveType;
+import me.symi.healthysanity.objective.Objective;
 
 
 public class NewObjectiveFragment extends Fragment
@@ -91,7 +92,7 @@ public class NewObjectiveFragment extends Fragment
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
-                databaseHelper.addObjective(objectiveName, objectiveDescription, objectiveType, objectiveTime);
+                databaseHelper.addObjective(new Objective(objectiveName, objectiveDescription, objectiveType, objectiveTime));
             }
         });
 

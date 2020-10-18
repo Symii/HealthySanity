@@ -32,7 +32,7 @@ public class DefaultDatabase
         {
             ContentValues contentValues = getContentValues(objectiveNames.get(i), objectiveTimes.get(i)
                     , objectiveDescriptions.get(i), objectiveTypes.get(i));
-            long result = db.insert(DatabaseHelper.TABLE_NAME, null, contentValues);
+            long result = db.insert(DatabaseHelper.OBJECTIVE_TABLE_NAME, null, contentValues);
         }
 
     }
@@ -48,10 +48,10 @@ public class DefaultDatabase
     private ContentValues getContentValues(String name, int time, String description, ObjectiveType objectiveType)
     {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.COLUMN_NAME, name);
-        contentValues.put(DatabaseHelper.COLUMN_DESCRIPTION, description);
-        contentValues.put(DatabaseHelper.COLUMN_TYPE, objectiveType.toString());
-        contentValues.put(DatabaseHelper.COLUMN_TIME, time);
+        contentValues.put(DatabaseHelper.OBJECTIVE_NAME, name);
+        contentValues.put(DatabaseHelper.OBJECTIVE_DESCRIPTION, description);
+        contentValues.put(DatabaseHelper.OBJECTIVE_TYPE, objectiveType.toString());
+        contentValues.put(DatabaseHelper.OBJECTIVE_TIME, time);
 
         return  contentValues;
     }
