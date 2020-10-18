@@ -23,12 +23,16 @@ public class MasterActivity extends AppCompatActivity {
 
     private ImageView backImage;
     private BottomNavigationView bottomNavigationView;
+    private String date;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master);
         showFragment(CategoryType.CHOOSE_CATEGORY);
+
+        date = getIntent().getStringExtra("date");
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,6 +71,7 @@ public class MasterActivity extends AppCompatActivity {
     private void changeActivity(Class destination)
     {
         Intent intent = new Intent(this, destination);
+        intent.putExtra("date", date);
         startActivity(intent);
     }
 
@@ -76,13 +81,13 @@ public class MasterActivity extends AppCompatActivity {
         switch(categoryType)
         {
             case CHOOSE_CATEGORY:
-                fragment = new CategoryChooseFragment(this);
+                fragment = new CategoryChooseFragment(this, date);
                 break;
             case PHYSICAL:
-                fragment = new PhysicalObjectivesFragment();
+                fragment = new PhysicalObjectivesFragment(date);
                 break;
             case MENTAL:
-                fragment = new MentalObjectivesFragment();
+                fragment = new MentalObjectivesFragment(date);
                 break;
             case CUSTOM:
                 fragment = new NewObjectiveFragment();

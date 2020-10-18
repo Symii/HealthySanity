@@ -2,11 +2,14 @@ package me.symi.healthysanity.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -15,10 +18,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import me.symi.healthysanity.MainActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.symi.healthysanity.R;
-import me.symi.healthysanity.utils.DPUtils;
+
+import me.symi.healthysanity.enums.CategoryType;
+import me.symi.healthysanity.fragments.CategoryChooseFragment;
+import me.symi.healthysanity.fragments.MentalObjectivesFragment;
+import me.symi.healthysanity.fragments.NewObjectiveFragment;
+import me.symi.healthysanity.fragments.PhysicalObjectivesFragment;
+import me.symi.healthysanity.utils.DPUtil;
+import me.symi.healthysanity.utils.FileUtil;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -28,6 +41,8 @@ public class CalendarActivity extends AppCompatActivity
     private CalendarView calendarView;
     private TextView selectedDate;
     private LinearLayout addNewObjectiveButton;
+    private String date;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,6 +63,34 @@ public class CalendarActivity extends AppCompatActivity
         calendarView = findViewById(R.id.calendarView);
         selectedDate = findViewById(R.id.selectedDateTextView);
         addNewObjectiveButton = findViewById(R.id.addNewObjectiveButton);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.menuCalendar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            {
+                if(item.getTitle().equals("Strona główna"))
+                {
+                    changeActivity(MainActivity.class);
+                    return true;
+                }
+                else if(item.getTitle().equals("Kalendarz"))
+                {
+                    return true;
+                }
+                else if(item.getTitle().equals("Kategorie"))
+                {
+                    changeActivity(CategoryListActivity.class);
+                    return true;
+                }
+                else if(item.getTitle().equals("Wyzwania"))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        });
 
         setCurrentDate();
 
@@ -64,10 +107,11 @@ public class CalendarActivity extends AppCompatActivity
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth)
             {
                 month += 1;
-                String date = "Wybrana data: " + dayOfMonth +"." + month + "." + year + "r.";
-                selectedDate.setText(date);
+                date = dayOfMonth + "-" + month + "-" + year;
+                String formatedDate = "Wybrana data: " + date;
+                selectedDate.setText(formatedDate);
 
-                buildDynamicObjectives();
+                buildObjectiveLayout();
             }
         });
 
@@ -80,28 +124,31 @@ public class CalendarActivity extends AppCompatActivity
         });
     }
 
+
     private void changeActivity(Class destination)
     {
         Intent intent = new Intent(this, destination);
+        intent.putExtra("date", date);
         startActivity(intent);
     }
 
     private void setCurrentDate()
     {
-        Date date = new Date(System.currentTimeMillis());
-        DateFormat formater = DateFormat.getDateInstance();
-        String formatedDate = formater.format(date);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy"); // dd/MM/yyyy HH:mm:ss.SSS
+        Date now = new Date();
+        String strDate = simpleDateFormat.format(now);
+        date = strDate;
 
-        String today = "Wybrana data: " + formatedDate;
+        String today = "Wybrana data: " + strDate;
         selectedDate.setText(today);
-
         calendarView.setDate(System.currentTimeMillis());
     }
 
-    private void buildDynamicObjectives()
+    private LinearLayout buildObjectiveLayout()
     {
         LinearLayout container = findViewById(R.id.task_container);
         LinearLayout noObjectivesLayout = findViewById(R.id.no_objectives_layout);
+        DPUtil dpUtils = new DPUtil(getResources());
 
         if(container.getChildCount() >= 1)
         {
@@ -112,7 +159,7 @@ public class CalendarActivity extends AppCompatActivity
         if(random.nextInt(2) == 0)
         {
             noObjectivesLayout.setVisibility(View.VISIBLE);
-            return;
+            return null;
         }
 
         noObjectivesLayout.setVisibility(View.GONE);
@@ -123,21 +170,22 @@ public class CalendarActivity extends AppCompatActivity
         );
 
         LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(
-                DPUtils.getPixelsFromDP(this, 40),
-                DPUtils.getPixelsFromDP(this, 40)
+                dpUtils.getPixelsFromDP(40),
+                dpUtils.getPixelsFromDP(40)
         );
 
-        params.setMargins(DPUtils.getPixelsFromDP(this, 20),
+        params.setMargins(
+                dpUtils.getPixelsFromDP(20),
                 0,
-                DPUtils.getPixelsFromDP(this, 20),
-                DPUtils.getPixelsFromDP(this, 40)
+                dpUtils.getPixelsFromDP(20),
+                dpUtils.getPixelsFromDP(40)
         );
 
         LinearLayout objectiveLayout = new LinearLayout(this);
         objectiveLayout.setLayoutParams(params);
 
         objectiveLayout.setBackgroundResource(R.drawable.bg_button);
-        int padding = DPUtils.getPixelsFromDP(this, 10);
+        int padding = dpUtils.getPixelsFromDP(10);
         objectiveLayout.setPadding(padding, padding + 20, padding, padding + 20);
         objectiveLayout.setId(View.generateViewId());
 
@@ -168,5 +216,7 @@ public class CalendarActivity extends AppCompatActivity
         objectiveLayout.addView(textView);
         // Finally add our objective to container layout
         container.addView(objectiveLayout);
+
+        return objectiveLayout;
     }
 }

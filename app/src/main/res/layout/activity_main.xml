@@ -463,8 +463,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            app:itemIconSize="30dp"
-
+            app:itemIconSize="25dp"
+            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/navigation_menu"/>
 

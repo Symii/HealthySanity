@@ -1,9 +1,12 @@
 package me.symi.healthysanity.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.symi.healthysanity.R;
@@ -25,6 +29,7 @@ public class NewObjectiveFragment extends Fragment
     private EditText objectiveDescriptionInput;
     private EditText objectiveTimeInput;
     private RadioGroup objectiveTypeRadioGroup;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -47,6 +52,13 @@ public class NewObjectiveFragment extends Fragment
             {
                 String objectiveName = objectiveNameInput.getText().toString().trim();
                 String objectiveDescription = objectiveDescriptionInput.getText().toString().trim();
+
+                if(objectiveName.length() <= 0 || objectiveDescription.length() <= 0)
+                {
+                    displayError("Błąd: musisz wypełnić wszystkie pola!");
+                    return;
+                }
+
                 int objectiveTime = 0;
                 try
                 {
@@ -54,13 +66,13 @@ public class NewObjectiveFragment extends Fragment
                 }
                 catch (Exception exception)
                 {
-                    Toast.makeText(view.getContext(), "Podaj czas podany w minutach!", Toast.LENGTH_SHORT);
+                    displayError("Błąd: podaj czas podany w minutach bez znakow specjalnych!");
                     return;
                 }
 
-                if(objectiveName.length() <= 0 || objectiveDescription.length() <= 0)
+                if(objectiveTypeRadioGroup.getCheckedRadioButtonId() == -1)
                 {
-                    Toast.makeText(view.getContext(), "Wypełnij wszystkie wymagane pola!", Toast.LENGTH_SHORT);
+                    displayError("Błąd: wybierz kategorie zadania!");
                     return;
                 }
 
@@ -84,6 +96,26 @@ public class NewObjectiveFragment extends Fragment
         });
 
         return view;
+    }
+
+    private void displayError(final String errorMess)
+    {
+        final TextView errorTextView = getView().findViewById(R.id.errorTextView);
+        errorTextView.setText(errorMess);
+        errorTextView.setVisibility(View.VISIBLE);
+
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(errorTextView.getText().toString().equalsIgnoreCase(errorMess))
+                {
+                    errorTextView.setVisibility(View.GONE);
+                }
+            }
+        }, 4000);
     }
 
 }

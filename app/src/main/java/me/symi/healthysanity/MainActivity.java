@@ -1,5 +1,6 @@
 package me.symi.healthysanity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,20 +10,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.symi.healthysanity.R;
 
 import me.symi.healthysanity.activities.CalendarActivity;
+import me.symi.healthysanity.activities.CategoryListActivity;
 import me.symi.healthysanity.listeners.OpenStatisticsActivityOnClickListener;
 
 public class MainActivity extends AppCompatActivity
 {
     private final static String USERNAME = "Użytkownik";
     private DrawerLayout drawer;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,6 +65,34 @@ public class MainActivity extends AppCompatActivity
                 {
                     drawer.openDrawer(Gravity.RIGHT);
                 }
+            }
+        });
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            {
+                if(item.getTitle().equals("Strona główna"))
+                {
+                    return true;
+                }
+                else if(item.getTitle().equals("Kalendarz"))
+                {
+                    changeActivity(CalendarActivity.class);
+                    return true;
+                }
+                else if(item.getTitle().equals("Kategorie"))
+                {
+                    changeActivity(CategoryListActivity.class);
+                    return true;
+                }
+                else if(item.getTitle().equals("Wyzwania"))
+                {
+                    return true;
+                }
+
+                return false;
             }
         });
 

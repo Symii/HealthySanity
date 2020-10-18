@@ -16,9 +16,11 @@ import com.symi.healthysanity.R;
 public class CategoryChooseFragment extends Fragment {
 
     private MasterActivity instance;
-    public CategoryChooseFragment(MasterActivity instance)
+    private String date;
+    public CategoryChooseFragment(MasterActivity instance, String date)
     {
         this.instance = instance;
+        this.date = date;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class CategoryChooseFragment extends Fragment {
         physicalCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFragment(new PhysicalObjectivesFragment());
+                showFragment(new PhysicalObjectivesFragment(date));
                 instance.getBottomNavigationView().setSelectedItemId(R.id.physical_category);
             }
         });
@@ -41,7 +43,7 @@ public class CategoryChooseFragment extends Fragment {
         mentalCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showFragment(new MentalObjectivesFragment());
+                showFragment(new MentalObjectivesFragment(date));
                 instance.getBottomNavigationView().setSelectedItemId(R.id.mental_category);
             }
         });

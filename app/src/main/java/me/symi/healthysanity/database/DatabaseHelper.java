@@ -2,27 +2,36 @@ package me.symi.healthysanity.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.symi.healthysanity.R;
+
+import me.symi.healthysanity.activities.MasterActivity;
 import me.symi.healthysanity.enums.ObjectiveType;
+import me.symi.healthysanity.fragments.MentalObjectivesFragment;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-
+public class DatabaseHelper extends SQLiteOpenHelper
+{
     private Context context;
     private static final String DATABASE_NAME = "HealthySanity.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
-    private static final String TABLE_NAME = "objectives";
-    private static final String COLUMN_ID = "id";
-    private static final String COLUMN_NAME = "objective_name";
-    private static final String COLUMN_DESCRIPTION = "objective_description";
-    private static final String COLUMN_TYPE = "objective_type";
-    private static final String COLUMN_TIME = "objective_time"; // time in minutes
+    public static final String TABLE_NAME = "objectives";
+    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_NAME = "objective_name";
+    public static final String COLUMN_DESCRIPTION = "objective_description";
+    public static final String COLUMN_TYPE = "objective_type";
+    public static final String COLUMN_TIME = "objective_time"; // time in minutes
 
-
-    public DatabaseHelper(Context context)
+    public DatabaseHelper( Context context)
     {
         super(context, DATABASE_NAME, null , DATABASE_VERSION);
         this.context = context;
@@ -39,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_TIME + " INTEGER);";
 
         db.execSQL(create_table_sql);
+        new DefaultDatabase(db);
     }
 
     @Override
@@ -68,5 +78,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Pomyślnie stworzyłeś nowe zadanie!", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    public Cursor readAllData()
+    {
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        if(database != null)
+        {
+            cursor = database.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    public Cursor getObjectives(ObjectiveType objectiveType)
+    {
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_TYPE + "='" + objectiveType.toString() + "'";
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        if(database != null)
+        {
+            cursor = database.rawQuery(query, null);
+        }
+        return cursor;
     }
 }

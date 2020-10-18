@@ -17,9 +17,5 @@
         android:icon="@drawable/ic_challenge"
         android:title="@string/wyzwania"/>
 
-    <item android:id="@+id/menuAuthors"
-        android:icon="@drawable/ic_info"
-        android:title="@string/autorzy"/>
-
 
 </menu>

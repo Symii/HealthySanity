@@ -1,8 +1,10 @@
 package me.symi.healthysanity.listeners;
 
+import android.content.Intent;
 import android.view.View;
 
 import me.symi.healthysanity.MainActivity;
+import me.symi.healthysanity.activities.CategoryListActivity;
 
 public class OpenStatisticsActivityOnClickListener implements View.OnClickListener
 {
@@ -16,9 +18,8 @@ public class OpenStatisticsActivityOnClickListener implements View.OnClickListen
     @Override
     public void onClick(View v)
     {
-        // TODO:
-        //Intent intent = new Intent(instance, CategoryListActivity.class);
-        //instance.startActivity(intent);
+        Intent intent = new Intent(instance, CategoryListActivity.class);
+        instance.startActivity(intent);
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,284 +8,294 @@
     android:orientation="vertical"
     >
 
-    <LinearLayout
+    <include
+        android:id="@+id/topbar"
+        layout="@layout/topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <include
-            android:id="@+id/topbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/topbar"
-            />
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="2dp"
-                android:text="@string/choose_date"
-                android:textColor="@color/colorTrendingEnd"
-                android:textSize="23sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="102dp"
-                    android:layout_height="4dp"
-                    android:src="@drawable/underline"/>
-
-            </LinearLayout>
+            android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="30dp"
-                android:gravity="center"
-                android:layout_marginBottom="20dp"
-                >
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/selectedDateTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:layout_marginRight="40dp"
-                    android:text=""
-                    android:textColor="#676767"
-                    android:textSize="19sp" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/today"
-                    android:background="@drawable/bg_button"
-                    android:textColor="@color/colorWhite"
-                    android:id="@+id/today_button"
-                    />
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_calendar"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                >
-
-                <CalendarView
-                    android:id="@+id/calendarView"
+                    android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:firstDayOfWeek="@android:integer/config_longAnimTime"
-                    >
+                    android:layout_marginTop="30dp"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/choose_date"
+                    android:textColor="@color/colorTrendingEnd"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
 
-                </CalendarView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <ImageView
+                        android:layout_width="102dp"
+                        android:layout_height="4dp"
+                        android:src="@drawable/underline" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/selectedDateTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginRight="40dp"
+                        android:text=""
+                        android:textColor="#676767"
+                        android:textSize="17sp" />
+
+                    <Button
+                        android:id="@+id/today_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button"
+                        android:text="@string/today"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_calendar">
+
+                    <CalendarView
+                        android:id="@+id/calendarView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:firstDayOfWeek="@android:integer/config_longAnimTime">
+
+                    </CalendarView>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/addNewObjectiveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_button"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_add_24"
+                        app:tint="@color/colorWhite" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Dodaj nowe zadanie"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="25dp"
-            android:orientation="horizontal"
-            >
-
             <LinearLayout
-                android:id="@+id/addNewObjectiveButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button"
-                android:padding="5dp"
-                >
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_add_24"
-                    app:tint="@color/colorWhite"
-                    />
+                android:layout_marginTop="25dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Twoje zadania w tym dniu:"
+                    android:textColor="@color/colorText"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/no_objectives_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/bg_red"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Dodaj nowe zadanie"
-                    android:textColor="@color/colorWhite"
                     android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:text="Brak zadań w tym dniu"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Twoje zadania w tym dniu:"
-                android:textColor="@color/colorText"
-                android:gravity="center"
-                android:textSize="20sp"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/no_objectives_layout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/bg_red"
-            android:layout_marginBottom="40dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:visibility="gone"
-            android:layout_marginTop="30dp"
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Brak zadań w tym dniu"
-                android:textColor="@color/colorWhite"
-                android:gravity="center"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/task_container"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            >
-
             <LinearLayout
-                android:id="@+id/objective1"
+                android:id="@+id/task_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_button"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="40dp"
-                >
+                android:layout_marginTop="25dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_person_running_on_a_treadmill_silhouette_from_side_view"
-                    app:tint="@color/colorWhite"
-                    />
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_done_24"
-                    app:tint="@color/green"
-                    android:layout_marginLeft="4dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/objective1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Przebiegnij dystans 2 kilometrów"
-                    android:gravity="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
-                    android:layout_marginStart="5dp"
-                    />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/bg_button"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_person_running_on_a_treadmill_silhouette_from_side_view"
+                        app:tint="@color/colorWhite" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="4dp"
+                        app:srcCompat="@drawable/ic_done_24"
+                        app:tint="@color/green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center"
+                        android:text="Przebiegnij dystans 2 kilometrów"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
 
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/objective2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/bg_button"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_meditate_24"
+                        app:tint="@color/colorWhite" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="4dp"
+                        app:srcCompat="@drawable/ic_close_24"
+                        app:tint="@color/red" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:gravity="center"
+                        android:text="Medytacja 15 minut"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/objective2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_button"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="40dp"
-                >
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_meditate_24"
-                    app:tint="@color/colorWhite"
-                    />
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:srcCompat="@drawable/ic_close_24"
-                    app:tint="@color/red"
-                    android:layout_marginStart="4dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Medytacja 15 minut"
-                    android:gravity="center"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
-                    android:layout_marginStart="5dp"/>
-
-
-
-
-
-
+                android:layout_height="100dp">
             </LinearLayout>
-
-
-
 
         </LinearLayout>
 
-    </LinearLayout>
+
+    </ScrollView>
 
 
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        app:itemIconSize="25dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation_menu"/>
 
-</ScrollView>
+    <View
+
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
