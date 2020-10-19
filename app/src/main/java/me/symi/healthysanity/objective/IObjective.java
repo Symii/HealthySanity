@@ -8,4 +8,5 @@ public interface IObjective
     String getDescription();
     ObjectiveType getType();
     int getTime();
+    int getID();
 }

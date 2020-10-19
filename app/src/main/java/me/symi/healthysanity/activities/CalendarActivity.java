@@ -28,6 +28,8 @@ import me.symi.healthysanity.fragments.CategoryChooseFragment;
 import me.symi.healthysanity.fragments.MentalObjectivesFragment;
 import me.symi.healthysanity.fragments.NewObjectiveFragment;
 import me.symi.healthysanity.fragments.PhysicalObjectivesFragment;
+import me.symi.healthysanity.objective.AssignedObjective;
+import me.symi.healthysanity.objective.IAssignedObjective;
 import me.symi.healthysanity.objective.Objective;
 import me.symi.healthysanity.utils.DPUtil;
 import me.symi.healthysanity.utils.FileUtil;
@@ -118,7 +120,6 @@ public class CalendarActivity extends AppCompatActivity
                 date = dayOfMonth + "-" + month + "-" + year;
                 String formatedDate = "Wybrana data: " + date;
                 selectedDate.setText(formatedDate);
-
                 checkForObjectives();
             }
         });
@@ -140,7 +141,7 @@ public class CalendarActivity extends AppCompatActivity
         }
 
         DatabaseHelper databaseHelper = new DatabaseHelper(CalendarActivity.this);
-        ArrayList<Objective> objectives = databaseHelper.getObjectivesByDate(date);
+        ArrayList<AssignedObjective> objectives = databaseHelper.getObjectivesByDate(date);
         if(objectives.size() <= 0)
         {
             noObjectivesLayout.setVisibility(View.VISIBLE);
@@ -150,9 +151,9 @@ public class CalendarActivity extends AppCompatActivity
             noObjectivesLayout.setVisibility(View.GONE);
         }
 
-        for(Objective objective : objectives)
+        for(AssignedObjective assignedObjective : objectives)
         {
-            buildObjectiveLayout(objective);
+            buildObjectiveLayout(assignedObjective);
         }
     }
 
@@ -177,7 +178,7 @@ public class CalendarActivity extends AppCompatActivity
         checkForObjectives();
     }
 
-    private LinearLayout buildObjectiveLayout(Objective objective)
+    private LinearLayout buildObjectiveLayout(final AssignedObjective assignedObjective)
     {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -215,7 +216,7 @@ public class CalendarActivity extends AppCompatActivity
 
         TextView textView = new TextView(this);
         textView.setLayoutParams(textViewParams);
-        textView.setText(objective.getDescription());
+        textView.setText(assignedObjective.getObjective().getDescription());
         textView.setGravity(Gravity.CENTER);
         textView.setTextColor(Color.rgb(255, 255, 255));
         textView.setTextSize(18);
@@ -231,6 +232,16 @@ public class CalendarActivity extends AppCompatActivity
         objectiveLayout.addView(textView);
         // Finally add our objective to container layout
         container.addView(objectiveLayout);
+
+        objectiveLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(CalendarActivity.this, ObjectiveFromCalendarActivity.class);
+                intent.putExtra("AssignedObjective", assignedObjective);
+                startActivity(intent);
+            }
+        });
 
         return objectiveLayout;
     }

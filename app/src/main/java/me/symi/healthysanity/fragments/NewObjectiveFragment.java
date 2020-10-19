@@ -92,7 +92,7 @@ public class NewObjectiveFragment extends Fragment
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(getContext());
-                databaseHelper.addObjective(new Objective(objectiveName, objectiveDescription, objectiveType, objectiveTime));
+                databaseHelper.addObjective(objectiveName, objectiveDescription, objectiveType, objectiveTime);
             }
         });
 

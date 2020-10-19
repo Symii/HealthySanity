@@ -72,15 +72,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
-    public void addObjective(IObjective objective)
+    public void addObjective(String objectiveName, String objectiveDescription, ObjectiveType objectiveType, int objectiveTime)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(OBJECTIVE_NAME, objective.getObjectiveName());
-        contentValues.put(OBJECTIVE_DESCRIPTION, objective.getDescription());
-        contentValues.put(OBJECTIVE_TYPE, objective.getType().toString());
-        contentValues.put(OBJECTIVE_TIME, objective.getTime());
+        contentValues.put(OBJECTIVE_NAME, objectiveName);
+        contentValues.put(OBJECTIVE_DESCRIPTION, objectiveDescription);
+        contentValues.put(OBJECTIVE_TYPE, objectiveType.toString());
+        contentValues.put(OBJECTIVE_TIME, objectiveTime);
 
         long result = db.insert(OBJECTIVE_TABLE_NAME, null, contentValues);
         if(result == -1)
@@ -94,9 +94,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
 
-    public void assignObjective(IAssignedObjective assignedObjective) throws NoSuchObjectiveException
+    public void assignObjective(Objective objective, String date, String startTime) throws NoSuchObjectiveException
     {
-        if(containsObjectiveWithID(assignedObjective.getID()) == false)
+        if(containsObjectiveWithID(objective.getID()) == false)
         {
             throw new NoSuchObjectiveException("Can not find objective with this ID!");
         }
@@ -104,9 +104,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(ASSIGNED_OBJECTIVE_ID, assignedObjective.getID());
-        contentValues.put(ASSIGNED_DATE, assignedObjective.getDate());
-        contentValues.put(ASSIGNED_START_TIME, assignedObjective.getStartTime());
+        contentValues.put(ASSIGNED_OBJECTIVE_ID, objective.getID());
+        contentValues.put(ASSIGNED_DATE, date);
+        contentValues.put(ASSIGNED_START_TIME, startTime);
         contentValues.put(ASSIGNED_COMPLETE, false);
 
         long result = db.insert(ASSIGNED_TABLE_NAME, null, contentValues);
@@ -154,19 +154,22 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 final String type = cursor.getString(3);
                 final int time = cursor.getInt(4);
 
-                return new Objective(name, description, ObjectiveType.valueOf(type), time);
+                return new Objective(ID, name, description, ObjectiveType.valueOf(type), time);
             }
         }
         return null;
     }
 
-    public ArrayList<Objective> getObjectivesByDate(String date)
+    public ArrayList<AssignedObjective> getObjectivesByDate(String date)
     {
         String query = "SELECT "
                 + OBJECTIVE_NAME + ", "
                 + OBJECTIVE_DESCRIPTION + ", "
                 + OBJECTIVE_TIME + ", "
-                + OBJECTIVE_TYPE
+                + OBJECTIVE_TYPE + ", "
+                + OBJECTIVE_TABLE_NAME + "." + OBJECTIVE_ID + ", "
+                + ASSIGNED_START_TIME + ", "
+                + ASSIGNED_TABLE_NAME + "." + ASSIGNED_ID
                 + " FROM " + OBJECTIVE_TABLE_NAME
                 + " INNER JOIN " + ASSIGNED_TABLE_NAME + " ON "
                 + OBJECTIVE_TABLE_NAME + "." + OBJECTIVE_ID
@@ -178,21 +181,28 @@ public class DatabaseHelper extends SQLiteOpenHelper
         if(database != null)
         {
             cursor = database.rawQuery(query, null);
-            ArrayList<Objective> objectives = new ArrayList<>();
+            ArrayList<AssignedObjective> objectives = new ArrayList<>();
             while(cursor.moveToNext())
             {
                 final String name = cursor.getString(0);
                 final String description = cursor.getString(1);
                 final int time = cursor.getInt(2);
                 final ObjectiveType type = ObjectiveType.valueOf(cursor.getString(3));
+                final int objectiveID = cursor.getInt(4);
+                final String startTime = cursor.getString(5);
+                final int assignedObjectiveID = cursor.getInt(6);
 
-                objectives.add(new Objective(name, description, type, time));
+                final Objective objective = new Objective(objectiveID, name, description, type, time);
+                final AssignedObjective assignedObjective = new AssignedObjective(assignedObjectiveID, objective, date, startTime);
+
+                objectives.add(assignedObjective);
             }
             return objectives;
         }
 
         return null;
     }
+
 
     public Cursor readAllData()
     {
@@ -207,6 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return cursor;
     }
 
+
     public Cursor getObjectives(ObjectiveType objectiveType)
     {
         String query = "SELECT * FROM " + OBJECTIVE_TABLE_NAME + " WHERE " + OBJECTIVE_TYPE + "='" + objectiveType.toString() + "'";
@@ -219,4 +230,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         return cursor;
     }
+
+    public void deleteAssignedObjectiveByID(int assignedObjectiveID)
+    {
+        String query = "DELETE FROM " + ASSIGNED_TABLE_NAME + " WHERE " + ASSIGNED_ID + "=" + assignedObjectiveID;
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL(query);
+        Toast.makeText(context, "Usunięto zadanie", Toast.LENGTH_SHORT).show();
+    }
+
 }

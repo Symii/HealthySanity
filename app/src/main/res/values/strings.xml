@@ -25,8 +25,8 @@
     <string name="category">Kategorie</string>
     <string name="calendar">Kalendarz</string>
     <string name="main_page">Strona główna</string>
-    <string name="communicate">Communicate</string>
-    <string name="share">Share</string>
+    <string name="communicate">Społeczność</string>
+    <string name="share">Podziel się</string>
     <string name="choose_date">Wybierz date</string>
     <string name="today">Dzisiaj</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -41,4 +41,6 @@
     <string name="running">Bieganie</string>
     <string name="mental_category">Kategoria psychiczna</string>
     <string name="objective_overview">Przeglądaj zadania</string>
+    <string name="about_app">Aplikacja powstała w celu ułatwienia użytkownikom tej aplikacji w organizacji czasu oraz wpływu na zdrowie fizyczna jak i psychiczne (emocjonalne i umysłowe). W tej aplikacji możesz przypisać wybrane przez Ciebie zadania do określonego dnia oraz godziny. Dodatkowo stworzyliśmy możliwość tworzenia swoich własnych zadań.</string>
+    <string name="app_rules">Aby przypisać zadanie do wybranego dnia kliknij w menu głównym na kalendarz, następnie wybierz dzień w jakim chcesz wykonywać zadanie. Kliknij przycisk "+Dodaj nowe zadanie". Teraz możesz wybrać kategorie zadań lub stworzyć swoje własne zadanie. Klikamy np. Zdrowie fizyczne oraz pojawiaja się nam lista zadań. Wybieramy interesujące nas zadanie po czym wpisujemy o której godzinie ma pojawić się powiadomienie w telefonie. Klikamy "Akceptuje". Nasze zadanie zostało pomyślnie dodane!</string>
 </resources>

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.symi.healthysanity.R;
 
 import me.symi.healthysanity.database.DatabaseHelper;
+import me.symi.healthysanity.enums.ObjectiveType;
 import me.symi.healthysanity.exceptions.NoSuchObjectiveException;
 import me.symi.healthysanity.objective.AssignedObjective;
 import me.symi.healthysanity.objective.Objective;
@@ -21,11 +22,7 @@ import me.symi.healthysanity.objective.Objective;
 public class AssignObjectiveActivity extends AppCompatActivity
 {
     private String date;
-    private String objectiveName;
-    private String objectiveDescription;
-    private String objectiveType;
-    private int objectiveTime; // in minutes
-    private int objectiveID;
+    private Objective objective;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,11 +31,14 @@ public class AssignObjectiveActivity extends AppCompatActivity
         setContentView(R.layout.activity_assign_objective);
 
         date = getIntent().getStringExtra("date");
-        objectiveName = getIntent().getStringExtra("name");
-        objectiveDescription = getIntent().getStringExtra("description");
-        objectiveType = getIntent().getStringExtra("type");
-        objectiveTime = getIntent().getIntExtra("time", 0);
-        objectiveID = getIntent().getIntExtra("id", -1);
+
+        int objectiveID = getIntent().getIntExtra("id", -1);
+        String objectiveName = getIntent().getStringExtra("name");
+        String objectiveDescription = getIntent().getStringExtra("description");
+        String objectiveType = getIntent().getStringExtra("type");
+        int objectiveTime = getIntent().getIntExtra("time", 0);
+        objective = new Objective(objectiveID, objectiveName, objectiveDescription, ObjectiveType.valueOf(objectiveType), objectiveTime);
+
 
         ImageView backImage = findViewById(R.id.backImage);
         backImage.setOnClickListener(new View.OnClickListener() {
@@ -73,10 +73,9 @@ public class AssignObjectiveActivity extends AppCompatActivity
                 String startTime = startTimeEditText.getText().toString().trim();
                 DatabaseHelper databaseHelper = new DatabaseHelper(AssignObjectiveActivity.this);
 
-                AssignedObjective assignedObjective = new AssignedObjective(objectiveID, date, startTime);
                 try
                 {
-                    databaseHelper.assignObjective(assignedObjective);
+                    databaseHelper.assignObjective(objective, date, startTime);
                 }
                 catch (NoSuchObjectiveException exception)
                 {

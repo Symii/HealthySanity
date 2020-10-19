@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="me.symi.healthysanity.activities.AssignObjectiveActivity"></activity>
+        <activity android:name="me.symi.healthysanity.activities.ObjectiveFromCalendarActivity"></activity>
+        <activity android:name="me.symi.healthysanity.activities.SetupActivity" />
+        <activity android:name="me.symi.healthysanity.activities.ProfileActivity" />
+        <activity android:name="me.symi.healthysanity.activities.InfoActivity" />
+        <activity android:name="me.symi.healthysanity.activities.AssignObjectiveActivity" />
         <activity
             android:name="me.symi.healthysanity.activities.MasterActivity"
             android:screenOrientation="portrait" />

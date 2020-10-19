@@ -12,11 +12,11 @@ import java.io.OutputStreamWriter;
 
 public class FileUtil
 {
-    public void writeToFile(Context context, String data)
+    public void writeToFile(Context context, String fileName, String data)
     {
         try
         {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput("data.txt", Context.MODE_PRIVATE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
 
@@ -27,13 +27,13 @@ public class FileUtil
         }
     }
 
-    public String readFromFile(Context context)
+    public String readFromFile(Context context, String fileName)
     {
         String data = "";
 
         try
         {
-            InputStream inputStream = context.openFileInput("data.txt");
+            InputStream inputStream = context.openFileInput(fileName);
 
             if(inputStream != null)
             {
@@ -44,7 +44,8 @@ public class FileUtil
 
                 while((receiveString = bufferedReader.readLine()) != null)
                 {
-                    stringBuilder.append("\n").append(receiveString);
+                    //stringBuilder.append("\n").append(receiveString);
+                    stringBuilder.append(receiveString);
                 }
 
                 inputStream.close();

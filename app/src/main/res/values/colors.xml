@@ -13,4 +13,6 @@
     <color name="green">#46eb34</color>
     <color name="red">#e00724</color>
     <color name="underlineColor">#0c52eb</color>
+    <color name="black">#010101</color>
+    <color name="red2">#330107</color>
 </resources>
