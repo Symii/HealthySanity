@@ -2,7 +2,10 @@ package me.symi.healthysanity.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,8 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.symi.healthysanity.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import me.symi.healthysanity.database.DatabaseHelper;
 import me.symi.healthysanity.enums.ObjectiveType;
@@ -23,6 +32,8 @@ public class AssignObjectiveActivity extends AppCompatActivity
 {
     private String date;
     private Objective objective;
+    private String selectedTime;
+    private int hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -63,19 +74,50 @@ public class AssignObjectiveActivity extends AppCompatActivity
         TextView objectiveTimeTextView = findViewById(R.id.objectiveTime);
         objectiveTimeTextView.setText(objectiveTime + " minut");
 
+        final TextView startTimeTextView = findViewById(R.id.editTextTime);
+        startTimeTextView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        AssignObjectiveActivity.this,
+                        R.style.Theme_AppCompat_Light_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener()
+                        {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int pMinute)
+                            {
+                                hour = hourOfDay;
+                                minute = pMinute;
+                                selectedTime = hour + ":" + minute;
+                                startTimeTextView.setText(selectedTime);
+                            }
+                        }, 12, 0, true
+                );
+
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.updateTime(hour, minute);
+                timePickerDialog.show();
+            }
+        });
+
         Button acceptButton = findViewById(R.id.acceptButton);
         acceptButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                EditText startTimeEditText = findViewById(R.id.editTextTime);
-                String startTime = startTimeEditText.getText().toString().trim();
+                if(selectedTime == null)
+                {
+                    Toast.makeText(AssignObjectiveActivity.this, "Wybierz godzine zadania", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 DatabaseHelper databaseHelper = new DatabaseHelper(AssignObjectiveActivity.this);
 
                 try
                 {
-                    databaseHelper.assignObjective(objective, date, startTime);
+                    databaseHelper.assignObjective(objective, date, selectedTime);
                 }
                 catch (NoSuchObjectiveException exception)
                 {

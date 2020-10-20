@@ -7,7 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -21,16 +26,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.symi.healthysanity.R;
 
+import java.util.Calendar;
+
 import me.symi.healthysanity.activities.CalendarActivity;
 import me.symi.healthysanity.activities.CategoryListActivity;
 import me.symi.healthysanity.activities.InfoActivity;
 import me.symi.healthysanity.activities.ProfileActivity;
 import me.symi.healthysanity.activities.SetupActivity;
+import me.symi.healthysanity.notification.ReminderBroadcast;
 import me.symi.healthysanity.utils.FileUtil;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
-    private String username = "Użytkownik";
+    private String username = "Gość";
     private DrawerLayout drawer;
     private BottomNavigationView bottomNavigationView;
     private FileUtil fileUtil = new FileUtil();
